@@ -1,6 +1,5 @@
 L'Espace Opérateur ETU 4088(binome 1)
  
- 
 1) Bdd prête : Création des tables SQLite 
  et remplissage automatique des données de départ
  (préfixes autorisés, types de transactions, barème des frais)

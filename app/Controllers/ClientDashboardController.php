@@ -106,21 +106,19 @@ class ClientDashboardController extends BaseController
             return redirect()->to(site_url('client/login'));
         }
 
-        // Recuperer le type d'operation (DEP)
         $db = \Config\Database::connect();
         $typeOp = $db->table('type_operations')->where('code', 'DEP')->get()->getRowArray();
 
-        // Calcul des frais (normalement 0)
         $frais = $this->getFees('DEP', $amount);
 
-        // Effectuer l'operation en base
+       
         $db->transStart();
         
-        // Mettre a jour le solde (dépôt augmente le solde)
+        
         $nouveauSolde = $client['solde'] + $amount;
         $clientModel->update($clientId, ['solde' => $nouveauSolde]);
 
-        // Enregistrer la transaction
+       
         $transactionModel = new TransactionModel();
         $transactionModel->insert([
             'id_type_operation' => $typeOp['id'],
@@ -141,7 +139,6 @@ class ClientDashboardController extends BaseController
         return redirect()->to(site_url('client/dashboard'));
     }
 
-    // 2. RETRAIT
     public function withdraw()
     {
         if (!$this->checkAuth()) {
@@ -163,7 +160,7 @@ class ClientDashboardController extends BaseController
             return redirect()->to(site_url('client/login'));
         }
 
-        // Calcul des frais pour retrait
+      
         $frais = $this->getFees('RET', $amount);
         $totalDebite = $amount + $frais;
 
@@ -172,7 +169,6 @@ class ClientDashboardController extends BaseController
             return redirect()->to(site_url('client/dashboard'));
         }
 
-        // Effectuer le retrait
         $db = \Config\Database::connect();
         $typeOp = $db->table('type_operations')->where('code', 'RET')->get()->getRowArray();
 
@@ -181,7 +177,6 @@ class ClientDashboardController extends BaseController
         $nouveauSolde = $client['solde'] - $totalDebite;
         $clientModel->update($clientId, ['solde' => $nouveauSolde]);
 
-        // Enregistrer la transaction
         $transactionModel = new TransactionModel();
         $transactionModel->insert([
             'id_type_operation' => $typeOp['id'],
@@ -202,7 +197,6 @@ class ClientDashboardController extends BaseController
         return redirect()->to(site_url('client/dashboard'));
     }
 
-    // 3. TRANSFERT
     public function transfer()
     {
         if (!$this->checkAuth()) {
@@ -235,7 +229,7 @@ class ClientDashboardController extends BaseController
             return redirect()->to(site_url('client/dashboard'));
         }
 
-        // Valider le prefixe du destinataire
+        
         $prefixModel = new PrefixModel();
         $prefixes = $prefixModel->findAll();
         $validPrefixes = array_column($prefixes, 'prefixe');
@@ -253,14 +247,14 @@ class ClientDashboardController extends BaseController
             return redirect()->to(site_url('client/dashboard'));
         }
 
-        // Obtenir ou créer le destinataire
+
         $recipient = $clientModel->where('telephone', $destTelephone)->first();
         $db = \Config\Database::connect();
 
         $db->transStart();
 
         if (!$recipient) {
-            // Création automatique du destinataire avec solde = 0.0
+          
             $recipientId = $clientModel->insert([
                 'telephone' => $destTelephone,
                 'solde' => 0.0
@@ -270,7 +264,6 @@ class ClientDashboardController extends BaseController
             $recipientId = $recipient['id'];
         }
 
-        // Calcul des frais
         $frais = $this->getFees('TRA', $amount);
         $totalDebite = $amount + $frais;
 
@@ -280,11 +273,10 @@ class ClientDashboardController extends BaseController
             return redirect()->to(site_url('client/dashboard'));
         }
 
-        // Mettre a jour les soldes
+      
         $clientModel->update($clientId, ['solde' => $sender['solde'] - $totalDebite]);
         $clientModel->update($recipientId, ['solde' => $recipient['solde'] + $amount]);
 
-        // Enregistrer la transaction
         $typeOp = $db->table('type_operations')->where('code', 'TRA')->get()->getRowArray();
         $transactionModel = new TransactionModel();
         $transactionModel->insert([
