@@ -1,0 +1,32 @@
+# ── CodeIgniter / PHP ─────────────────────────────
+/vendor/
+/composer.lock
+
+# ── Sessions (ne jamais commiter) ─────────────────
+writable/session/
+writable/cache/
+writable/logs/
+writable/debugbar/
+writable/uploads/
+
+# ── Base de données SQLite (locale) ───────────────
+writable/database/*.db
+writable/database/*.db-shm
+writable/database/*.db-wal
+
+# ── Images copiées / dupliquées ──────────────────
+public/src/
+src/
+
+# ── Environnement ─────────────────────────────────
+.env
+env.local
+
+# ── OS / Éditeurs ─────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.log
