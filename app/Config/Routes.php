@@ -15,6 +15,15 @@ $routes->get('/', function() {
     return redirect()->to(site_url('client/login'));
 });
 
+// Client routes
+$routes->get('client/login', 'ClientAuthController::login');
+$routes->post('client/login', 'ClientAuthController::doLogin');
+$routes->get('client/logout', 'ClientAuthController::logout');
+$routes->get('client/dashboard', 'ClientDashboardController::index');
+$routes->post('client/deposit', 'ClientDashboardController::deposit');
+$routes->post('client/withdraw', 'ClientDashboardController::withdraw');
+$routes->post('client/transfer', 'ClientDashboardController::transfer');
+
 // Operator routes
 $routes->get('operator', 'OperatorController::index');
 $routes->post('operator/prefix/add', 'OperatorController::addPrefix');
