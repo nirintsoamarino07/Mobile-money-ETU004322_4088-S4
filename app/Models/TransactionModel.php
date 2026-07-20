@@ -16,6 +16,8 @@ class TransactionModel extends Model
         'client_id_destinataire',
         'montant',
         'frais',
+        'commission',
+        'solde_apres',
         'date_transaction'
     ];
 }

@@ -1,7 +1,9 @@
+VERSION 1
 1. Configuration du projet
 Base de données
- Configurer la connexion à la base de données dans app/Config/Database.php.
- Vérifier que la connexion fonctionne correctement.
+Configurer la connexion à la base de données (Database.php).
+Vérifier la connexion avec SQLite.
+Créer les tables nécessaires (client, depot, retrait, transfert, historique, frais).
 2. Authentification (Login automatique)
 Fonctionnalités
     Permettre la connexion uniquement avec le numéro de téléphone.
@@ -24,74 +26,201 @@ Model
     insertClient() (Query Builder)
 View
     login.php
-3. Gestion des opérations bancaires
-A. Consulter le solde
+3. Consulter le solde
+Fonctionnalités
+    Afficher le solde du client connecté.
 Routes
     Route vers la page Solde.
 Controller
     getSolde()
-Model
-    Fonction permettant de récupérer le solde du client connecté.
+    Model
+    getSoldeClient()
 View
     solde.php
-B. Effectuer un dépôt
+4. Dépôt
+Fonctionnalités
+    Effectuer un dépôt.
+    Mettre à jour le solde du client.
+    Enregistrer l'opération dans l'historique.
 Routes
     Route d'affichage du formulaire.
-    Route de traitement du dépôt.
+    Route d'enregistrement du dépôt.
 Controller
     showDepot()
     saveDepot()
 Model
-    Fonction d'insertion du dépôt.
-    Mise à jour automatique du solde.
+    insertDepot()
+    updateSolde()
 View
     depot.php
-C. Effectuer un retrait
+5. Retrait
+Fonctionnalités
+    Vérifier le solde du client.
+    Calculer les frais de retrait.
+    Débiter le montant et les frais.
+    Enregistrer l'opération.
 Routes
     Route d'affichage du formulaire.
-    Route de traitement du retrait.
+    Route d'enregistrement du retrait.
 Controller
     showRetrait()
     saveRetrait()
 Model
-    Vérifier que le solde est suffisant.
-    Enregistrer le retrait.
-    Mettre à jour le solde.
+    insertRetrait()
+    updateSolde()
+    getFraisByMontant()
 View
     retrait.php
-D. Effectuer un transfert
+6. Transfert
+Fonctionnalités
+    Envoyer un montant vers un autre client.
+    Vérifier le solde.
+    Calculer les frais de transfert.
+    Débiter l'expéditeur.
+    Créditer le destinataire.
+    Enregistrer l'opération.
 Routes
     Route d'affichage du formulaire.
-    Route de traitement du transfert.
+    Route d'enregistrement du transfert.
 Controller
     showTransfert()
     saveTransfert()
 Model
-    Vérifier l'existence du destinataire.
-    Vérifier le solde du client.
-    Débiter l'expéditeur.
-    Créditer le destinataire.
-    Enregistrer l'opération.
+    insertTransfert()
+    updateSolde()
+    getFraisByMontant()
 View
     transfert.php
-E. Consulter l'historique
-Routes
+7. Historique
+Fonctionnalités
+    Afficher toutes les opérations du client.
+    Routes
     Route vers l'historique.
 Controller
     getHistorique()
 Model
-    Fonction de récupération des opérations du client.
+    getHistoriqueClient()
 View
     historique.php
-4. Gestion des Models
- findByTelephone()
- insertClient()
- getSolde()
- insertDepot()
- insertRetrait()
- insertTransfert()
- getHistorique()
-5. Gestion des Sessions
- Créer la session après connexion.
- Vérifier que l'utilisateur est connecté avant chaque opération.
- Ajouter la déconnexion (logout).
+
+VERSION 2
+1. Gestion des opérateurs
+Fonctionnalités
+Créer une table operateur.
+Ajouter les opérateurs :
+Yas (30%)
+Airtel (50%)
+Orange (20%)
+Modifier la table prefixe en ajoutant id_operateur.
+Associer chaque préfixe à son opérateur.
+Préfixes
+034 → Yas
+038 → Yas
+033 → Airtel
+032 → Orange
+037 → Orange
+2. Détection automatique de l'opérateur
+Fonctionnalités
+    Identifier automatiquement l'opérateur du destinataire grâce au préfixe.
+    Récupérer les informations de l'opérateur correspondant.
+Controller
+    Utiliser la détection dans la fonction saveTransfert().
+Model
+    getOperateurByPrefix()
+3. Commission entre opérateurs
+Fonctionnalités
+    Vérifier si le transfert est effectué vers un autre opérateur.
+    Récupérer le pourcentage de commission de l'opérateur destinataire.
+    Calculer automatiquement la commission.
+    Ajouter cette commission aux frais du transfert.
+    Enregistrer la commission dans l'historique.
+Controller
+    Modifier saveTransfert() afin de calculer automatiquement la commission.
+Model
+    getOperateurByPrefix()
+    getCommissionOperateur()
+4. Option « Inclure les frais de retrait »
+Fonctionnalités
+    Ajouter une case à cocher :
+    Inclure les frais de retrait
+    Si elle est cochée :
+    ajouter les frais de retrait au montant payé par l'expéditeur.
+    Si elle n'est pas cochée :
+    le destinataire paiera les frais lors du retrait.
+    Si le transfert est vers un autre opérateur :
+    ne pas appliquer les frais de retrait.
+Routes
+    Réutiliser la route du transfert.
+Controller
+    Modifier saveTransfert() pour gérer cette option.
+Model
+    getFraisRetrait()
+View
+    transfert.php
+5. Envoi multiple
+Fonctionnalités
+    Envoyer un montant vers plusieurs numéros.
+    Diviser automatiquement le montant entre tous les destinataires.
+    Autoriser uniquement les destinataires appartenant au même opérateur.
+    Vérifier le solde.
+    Enregistrer chaque transfert.
+Routes
+    Route vers le formulaire.
+    Route de traitement.
+Controller
+    showMultiTransfert()
+    saveMultiTransfert()
+Model
+    insertMultiTransfert()
+    updateSolde()
+    getOperateurByPrefix()
+View
+    multiTransfert.php
+6. Situation des gains
+Fonctionnalités
+    Créer une page permettant d'afficher :
+    Même opérateur
+    Nombre de transferts.
+    Total des frais.
+    Gain total.
+    Autres opérateurs
+    Nombre de transferts.
+    Total des commissions.
+    Gain total.
+Routes
+    Route vers la situation des gains.
+Controller
+    getSituationGain()
+Model
+    getSituationGain()
+View
+    situation_gain.php
+7. Situation des montants envoyés
+Fonctionnalités
+    Afficher le montant total envoyé vers chaque opérateur :
+    Yas
+    Airtel
+    Orange
+Routes
+    Route vers les statistiques.
+Controller
+    getSituationMontantOperateur()
+Model
+    getSituationMontantOperateur()
+View
+    situation_operateur.php
+8. Historique opérateur
+Fonctionnalités
+    Consulter toutes les opérations.
+    Filtrer par date.
+    Filtrer par client.
+    Filtrer par opérateur.
+    Afficher les frais et les commissions.
+Routes
+    Route vers l'historique opérateur.
+Controller
+    getHistoriqueOperateur()
+Model
+    getHistoriqueOperateur()
+View
+    historique_operateur.php

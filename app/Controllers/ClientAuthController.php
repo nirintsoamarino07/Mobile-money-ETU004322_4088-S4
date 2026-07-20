@@ -7,31 +7,34 @@ use App\Models\ClientModel;
 
 class ClientAuthController extends BaseController
 {
-    public function login()
+    /**
+     * Renders login.php view
+     */
+    public function showLogin()
     {
-        // If already logged in, redirect to dashboard
         if (session()->has('client_id')) {
-            return redirect()->to(site_url('client/dashboard'));
+            return redirect()->to(site_url('solde'));
         }
-
-        return view('client/login');
+        return view('login');
     }
 
-    public function doLogin()
+    /**
+     * Handles authentication logic
+     */
+    public function login()
     {
         $telephone = trim($this->request->getPost('telephone') ?? '');
 
         if (empty($telephone)) {
             session()->setFlashdata('error', 'Le numéro de téléphone est requis.');
-            return redirect()->to(site_url('client/login'));
+            return redirect()->to(site_url('/'));
         }
 
-        
+        // Validate prefix
         $prefixModel = new PrefixModel();
         $prefixes = $prefixModel->findAll();
         $validPrefixes = array_column($prefixes, 'prefixe');
 
-       
         $isValid = false;
         foreach ($validPrefixes as $prefix) {
             if (strpos($telephone, $prefix) === 0) {
@@ -42,35 +45,33 @@ class ClientAuthController extends BaseController
 
         if (!$isValid) {
             session()->setFlashdata('error', 'Numéro invalide. Cet opérateur n\'accepte pas ce préfixe.');
-            return redirect()->to(site_url('client/login'));
+            return redirect()->to(site_url('/'));
         }
 
-     
         $clientModel = new ClientModel();
-        $client = $clientModel->where('telephone', $telephone)->first();
+        $client = $clientModel->findByTelephone($telephone);
 
         if (!$client) {
-      
-            $clientId = $clientModel->insert([
-                'telephone' => $telephone,
-                'solde' => 0.0
-            ]);
+            // Auto create client with 0 solde
+            $clientId = $clientModel->insertClient($telephone);
             $client = $clientModel->find($clientId);
         }
 
-   
         session()->set([
             'client_id' => $client['id'],
             'client_telephone' => $client['telephone']
         ]);
 
         session()->setFlashdata('success', 'Connexion réussie.');
-        return redirect()->to(site_url('client/dashboard'));
+        return redirect()->to(site_url('solde'));
     }
 
+    /**
+     * Handles logout
+     */
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(site_url('client/login'));
+        return redirect()->to(site_url('/'));
     }
 }

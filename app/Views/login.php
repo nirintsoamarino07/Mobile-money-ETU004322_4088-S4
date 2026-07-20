@@ -37,7 +37,7 @@
         <div class="alert alert-error">❌ <?= session()->getFlashdata('error') ?></div>
     <?php endif; ?>
 
-    <form action="<?= site_url('client/login') ?>" method="post">
+    <form action="<?= site_url('login') ?>" method="post">
         <?= csrf_field() ?>
         <label for="telephone">Numéro de téléphone</label>
         <input type="text" id="telephone" name="telephone" required placeholder="Ex : 0321234567" autocomplete="tel">
