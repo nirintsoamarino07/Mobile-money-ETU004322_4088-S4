@@ -1,0 +1,107 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e3a8a;
+    --accent: #06b6d4;
+    --muted: #64748b;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 60%, #06b6d4 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.auth-card,
+.card {
+    background: #fff;
+    border-radius: 24px;
+    width: min(100%, 460px);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+    overflow: hidden;
+}
+.auth-body,
+.card-body {
+    padding: 36px 32px 28px;
+}
+.auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.auth-brand-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+}
+.auth-title,
+.card h1 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+.auth-subtitle,
+.card p.sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 8px;
+}
+.auth-card button,
+.card button,
+button {
+    width: 100%;
+    margin-top: 16px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.2);
+}
+.auth-link,
+.op-link {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+.auth-link a,
+.op-link a {
+    color: var(--primary);
+    font-weight: 700;
+}
+.auth-info,
+.info-box {
+    background: linear-gradient(135deg, #eff6ff, #f8fbff);
+    border: 1px solid #bfdbfe;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-top: 18px;
+    color: #1d4ed8;
+    font-size: 0.85rem;
+}
+.auth-info ul,
+.info-box ul {
+    margin-left: 16px;
+    line-height: 1.8;
+}

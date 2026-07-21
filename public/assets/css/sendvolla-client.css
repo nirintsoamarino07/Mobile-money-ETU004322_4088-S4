@@ -1,0 +1,110 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e3a8a;
+    --primary-light: #3b82f6;
+    --accent: #06b6d4;
+}
+
+body {
+    background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+}
+.solde-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border-radius: 22px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.22);
+}
+.solde-card .label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+.solde-card .amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    border-left: 4px solid var(--primary);
+    padding-left: 12px;
+    margin: 24px 0 16px;
+}
+.ops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 14px;
+}
+.op-card {
+    background: #fff;
+    border: 1px solid var(--border, #e2e8f0);
+    border-top: 4px solid var(--primary);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: var(--card-shadow, 0 12px 32px rgba(15, 23, 42, 0.08));
+}
+.op-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+}
+.op-card label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #475569;
+}
+.op-card textarea { min-height: 92px; resize: vertical; }
+.op-card .check-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #475569;
+}
+.op-card .check-label input { width: 16px; height: 16px; accent-color: var(--primary); }
+.op-card button { width: 100%; margin-top: 16px; }
+table.hist thead {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: #fff;
+}
+.badge-dep {
+    background: #ecfdf3;
+    color: #065f46;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.badge-ret {
+    background: #fef2f2;
+    color: #991b1b;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.badge-tra {
+    background: #eff6ff;
+    color: var(--primary-dark);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.plus { color: var(--success); font-weight: 700; }
+.minus { color: var(--danger); font-weight: 700; }
+@media (max-width: 768px) {
+    .ops-grid { grid-template-columns: 1fr; }
+}

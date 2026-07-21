@@ -34,7 +34,7 @@
 </head>
 <body>
 <header>
-    <h1>📱 Mobile Money</h1>
+    <h1>Mobile Money</h1>
     <nav>
         <a href="<?= site_url('solde') ?>">Solde</a>
         <a href="<?= site_url('depot') ?>">Dépôt</a>

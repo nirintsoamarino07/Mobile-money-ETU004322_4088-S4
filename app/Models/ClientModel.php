@@ -4,15 +4,6 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-/**
- * ClientModel – gestion des clients.
- *
- * Méthodes principales :
- *   findByTelephone($telephone)
- *   insertClient($telephone)
- *   getSolde($clientId)
- *   updateSolde($clientId, $nouveauSolde)
- */
 class ClientModel extends Model
 {
     protected $table            = 'clients';
@@ -21,9 +12,6 @@ class ClientModel extends Model
     protected $returnType       = 'array';
     protected $allowedFields    = ['telephone', 'solde', 'date_creation'];
 
-    /**
-     * Trouve un client par son numéro de téléphone.
-     */
     public function findByTelephone(string $telephone): ?array
     {
         return $this->where('telephone', $telephone)->first();
@@ -43,18 +31,12 @@ class ClientModel extends Model
         ]);
     }
 
-    /**
-     * Retourne le solde actuel du client.
-     */
     public function getSolde(int $clientId): float
     {
         $client = $this->find($clientId);
         return $client ? (float) $client['solde'] : 0.0;
     }
 
-    /**
-     * Met à jour le solde du client.
-     */
     public function updateSolde(int $clientId, float $nouveauSolde): bool
     {
         return $this->update($clientId, ['solde' => $nouveauSolde]);

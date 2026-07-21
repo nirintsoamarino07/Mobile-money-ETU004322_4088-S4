@@ -4,39 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historique Opérateur – Mobile Money</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a202c; }
-        header { background: linear-gradient(135deg, #0f172a, #1e3a5f); color: #fff; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; }
-        header h1 { font-size: 1.1rem; font-weight: 700; }
-        header a { color: rgba(255,255,255,.8); text-decoration: none; margin-left: 16px; font-size: .88rem; }
-        header a:hover { color: #fff; }
-        main { padding: 24px; max-width: 1400px; margin: 0 auto; }
-        h2 { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; }
-        .back { display: inline-block; margin-bottom: 16px; padding: 9px 18px; background: #0f172a; color: #fff; border-radius: 8px; text-decoration: none; font-size: .88rem; font-weight: 600; }
-        .back:hover { opacity: .85; }
-        /* Filtres */
-        .filters { background: #fff; border-radius: 14px; padding: 20px 24px; box-shadow: 0 2px 10px rgba(0,0,0,.07); margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; }
-        .filters label { font-size: .8rem; font-weight: 600; color: #4b5563; display: block; margin-bottom: 5px; }
-        .filters input, .filters select { padding: 8px 12px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: .88rem; outline: none; }
-        .filters input:focus, .filters select:focus { border-color: #0f172a; }
-        .btn { padding: 9px 20px; border: none; border-radius: 8px; font-size: .88rem; font-weight: 600; cursor: pointer; transition: opacity .2s; }
-        .btn-primary { background: #0f172a; color: #fff; }
-        .btn-reset   { background: #e5e7eb; color: #374151; }
-        .btn:hover   { opacity: .85; }
-        /* Table */
-        .card { background: #fff; border-radius: 14px; padding: 0; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
-        table { width: 100%; border-collapse: collapse; font-size: .84rem; }
-        thead { background: #0f172a; color: #fff; }
-        th { padding: 12px 14px; text-align: left; font-weight: 600; white-space: nowrap; }
-        td { padding: 11px 14px; border-bottom: 1px solid #f1f5f9; }
-        tr:last-child td { border: none; }
-        tr:hover td { background: #f8fafc; }
-        .badge-dep  { background:#d1fae5; color:#065f46; padding:3px 10px; border-radius:99px; font-size:.75rem; font-weight:700; }
-        .badge-ret  { background:#fee2e2; color:#7f1d1d; padding:3px 10px; border-radius:99px; font-size:.75rem; font-weight:700; }
-        .badge-tra  { background:#dbeafe; color:#1e3a8a; padding:3px 10px; border-radius:99px; font-size:.75rem; font-weight:700; }
-        .empty { color: #9ca3af; text-align: center; padding: 36px; font-size: .9rem; }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('assets/css/sendvolla-base.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/sendvolla-operator.css') ?>">
 </head>
 <body>
 <header>

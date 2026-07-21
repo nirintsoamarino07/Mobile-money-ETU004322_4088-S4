@@ -35,7 +35,6 @@ $routes->get('historique', 'ClientDashboardController::getHistorique');
 // Redirect for dashboard
 $routes->get('client/dashboard', 'ClientDashboardController::index');
 
-
 // ── Operator routes ──
 $routes->get('operator', 'OperatorController::index');
 $routes->get('operator/gains', 'OperatorController::getSituationGain');

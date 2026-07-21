@@ -3,63 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Mon Espace Client – Mobile Money</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a202c; min-height: 100vh; }
-
-        /* ---- HEADER ---- */
-        header { background: linear-gradient(135deg, #1a56db 0%, #0d3a8c 100%); color: #fff; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
-        header h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: .5px; }
-        header nav a { color: rgba(255,255,255,.85); text-decoration: none; margin-left: 18px; font-size: .9rem; transition: color .2s; }
-        header nav a:hover { color: #fff; }
-
-        /* ---- ALERTS ---- */
-        .alert { padding: 12px 18px; border-radius: 8px; margin: 16px 24px; font-size: .9rem; }
-        .alert-success { background: #d1fae5; border-left: 4px solid #059669; color: #065f46; }
-        .alert-error   { background: #fee2e2; border-left: 4px solid #dc2626; color: #7f1d1d; }
-
-        /* ---- MAIN ---- */
-        main { padding: 24px; max-width: 1300px; margin: 0 auto; }
-
-        /* ---- SOLDE CARD ---- */
-        .solde-card { background: linear-gradient(135deg, #1a56db, #0d3a8c); color: #fff; border-radius: 16px; padding: 28px 36px; display: inline-flex; flex-direction: column; gap: 6px; margin-bottom: 28px; box-shadow: 0 8px 24px rgba(26,86,219,.35); }
-        .solde-card .label { font-size: .85rem; opacity: .8; text-transform: uppercase; letter-spacing: 1px; }
-        .solde-card .amount { font-size: 2.4rem; font-weight: 700; }
-        .solde-card .tel { font-size: .9rem; opacity: .75; }
-
-        /* ---- SECTION TITLE ---- */
-        .section-title { font-size: 1.15rem; font-weight: 700; color: #1a56db; border-left: 4px solid #1a56db; padding-left: 12px; margin: 28px 0 16px; }
-
-        /* ---- OPERATION GRID ---- */
-        .ops-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 12px; }
-        .op-card { background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 2px 12px rgba(0,0,0,.07); border-top: 4px solid #1a56db; }
-        .op-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: #1e3a8a; }
-        .op-card label { display: block; font-size: .82rem; font-weight: 600; color: #4b5563; margin-bottom: 6px; }
-        .op-card input[type="text"],
-        .op-card input[type="number"],
-        .op-card textarea { width: 100%; padding: 9px 12px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: .9rem; outline: none; transition: border-color .2s; }
-        .op-card input:focus, .op-card textarea:focus { border-color: #1a56db; }
-        .op-card textarea { resize: vertical; min-height: 80px; font-family: inherit; }
-        .op-card .check-label { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: #374151; margin-top: 10px; cursor: pointer; }
-        .op-card .check-label input[type="checkbox"] { width: 16px; height: 16px; accent-color: #1a56db; }
-        .op-card button { margin-top: 16px; width: 100%; padding: 10px; background: #1a56db; color: #fff; border: none; border-radius: 8px; font-size: .9rem; font-weight: 600; cursor: pointer; transition: background .2s; }
-        .op-card button:hover { background: #1447ba; }
-
-        /* ---- HISTORIQUE ---- */
-        table.hist { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); font-size: .85rem; }
-        table.hist thead { background: #1a56db; color: #fff; }
-        table.hist th { padding: 12px 14px; text-align: left; font-weight: 600; }
-        table.hist td { padding: 11px 14px; border-bottom: 1px solid #f1f5f9; }
-        table.hist tr:last-child td { border-bottom: none; }
-        table.hist tr:hover td { background: #f8fafc; }
-        .badge-dep  { background:#d1fae5; color:#065f46; padding:2px 10px; border-radius:99px; font-size:.78rem; font-weight:700; }
-        .badge-ret  { background:#fee2e2; color:#7f1d1d; padding:2px 10px; border-radius:99px; font-size:.78rem; font-weight:700; }
-        .badge-tra  { background:#dbeafe; color:#1e3a8a; padding:2px 10px; border-radius:99px; font-size:.78rem; font-weight:700; }
-        .plus  { color:#059669; font-weight:700; }
-        .minus { color:#dc2626; font-weight:700; }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('assets/css/sendvolla-base.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/sendvolla-client.css') ?>">
 </head>
 <body>
 
@@ -221,7 +167,6 @@
     </table>
 
 </main>
-=======
     <title>Mon Espace Client - Send Vola</title>
     <meta name="description" content="Tableau de bord Send Vola – Gérez vos dépôts, retraits et transferts d'argent mobile en toute simplicité.">
 
