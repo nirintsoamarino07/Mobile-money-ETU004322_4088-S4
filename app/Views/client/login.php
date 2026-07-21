@@ -344,6 +344,8 @@
         <?= csrf_field() ?>
         <label for="telephone">Numéro de téléphone</label>
         <input type="text" id="telephone" name="telephone" required placeholder="Ex : 0321234567" autocomplete="tel">
+         <label for="telephone">Epargne</label>
+        <input type="text" id="telephone" name="telephone" required placeholder="Ex : 0321234567" autocomplete="tel">
         <button type="submit">Se connecter / Créer un compte</button>
     </form>
 

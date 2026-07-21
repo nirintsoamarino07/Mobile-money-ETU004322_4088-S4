@@ -163,6 +163,8 @@
             <div><label>Max (Ar)</label><input type="number" step="any" name="montant_max" required placeholder="10000" style="width:90px;"></div>
             <div><label>Frais fixe</label><input type="number" step="any" name="frais_fixe" value="0" style="width:80px;"></div>
             <div><label>Frais %</label><input type="number" step="any" name="frais_pourcentage" value="0" style="width:70px;"></div>
+            <div><label>Epargne  %</label><input type="number" step="any" name="Epargne_pourcentag"></div>
+
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>

@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS prefixes (
 CREATE TABLE IF NOT EXISTS clients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     telephone TEXT UNIQUE NOT NULL,
-    solde REAL DEFAULT 0,
+    solde REAL DEFAULT 0, 
+    epa_pourcentage REAL DEFAULT 0,
     date_creation  DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS bareme_frais (
     montant_min        REAL NOT NULL,
     montant_max        REAL NOT NULL,
     frais_fixe         REAL DEFAULT 0,
-    frais_pourcentage  REAL DEFAULT 0,
+    frais_pourcentage  REAL DEFAULT 0, 
     FOREIGN KEY (id_type_operation) REFERENCES type_operations(id)
 );
 
@@ -43,7 +44,8 @@ CREATE TABLE IF NOT EXISTS transactions (
     frais                 REAL DEFAULT 0,
     commission            REAL DEFAULT 0,
     solde_apres           REAL,
-    date_transaction      DATETIME DEFAULT CURRENT_TIMESTAMP,
+    date_transaction      DATETIME DEFAULT CURRENT_TIMESTAMP, 
+
     FOREIGN KEY (id_type_operation)      REFERENCES type_operations(id),
     FOREIGN KEY (client_id_expediteur)   REFERENCES clients(id),
     FOREIGN KEY (client_id_destinataire) REFERENCES clients(id)
@@ -87,11 +89,11 @@ INSERT INTO bareme_frais (id_type_operation, montant_min, montant_max, frais_fix
 ((SELECT id FROM type_operations WHERE code = 'TRA'),    10001,  50000, 500, 0),
 ((SELECT id FROM type_operations WHERE code = 'TRA'),    50001, 100000, 800, 0);
 
-INSERT INTO clients (telephone, solde) VALUES
-('0321111111', 100000.0),
-('0341234567', 50000.0),
-('0331111111', 30000.0),
-('0372222222', 10000.0);
+INSERT INTO clients (telephone, solde, epa_pourcentage) VALUES
+('0321111111', 100000.0, '5%'),
+('0341234567', 50000.0 '15%'),
+('0331111111', 30000.0 '10%'),
+('0372222222', 10000.0 '6%');
 
 
 CREATE VIEW IF NOT EXISTS vue_situation_clients AS

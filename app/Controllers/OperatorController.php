@@ -243,14 +243,14 @@ class OperatorController extends BaseController
         return redirect()->to(site_url('operator'));
     }
 
-    // ── 7. CRUD BARÈMES ──────────────────────────────────────
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     public function addBareme()
     {
         $idTypeOp = $this->request->getPost('id_type_operation');
         $min = $this->request->getPost('montant_min');
         $max = $this->request->getPost('montant_max');
         $fixe = $this->request->getPost('frais_fixe') ?: 0;
-        $pct = $this->request->getPost('frais_pourcentage') ?: 0;
+        $pct = $this->request->getPost('frais_pourcentage') ?: 0; 
 
         if ($idTypeOp !== null && $min !== null && $max !== null) {
             $baremeModel = new BaremeFraisModel();
@@ -259,7 +259,7 @@ class OperatorController extends BaseController
                 'montant_min' => $min,
                 'montant_max' => $max,
                 'frais_fixe' => $fixe,
-                'frais_pourcentage' => $pct,
+                'frais_pourcentage' => $pct, 
             ]);
             session()->setFlashdata('success', 'Barème ajouté.');
         }
@@ -273,6 +273,8 @@ class OperatorController extends BaseController
         $max = $this->request->getPost('montant_max');
         $fixe = $this->request->getPost('frais_fixe') ?: 0;
         $pct = $this->request->getPost('frais_pourcentage') ?: 0;
+      
+            
 
         if ($id !== null && $min !== null && $max !== null) {
             $baremeModel = new BaremeFraisModel();
@@ -281,6 +283,8 @@ class OperatorController extends BaseController
                 'montant_max' => $max,
                 'frais_fixe' => $fixe,
                 'frais_pourcentage' => $pct,
+
+
             ]);
             session()->setFlashdata('success', 'Barème mis à jour.');
         }

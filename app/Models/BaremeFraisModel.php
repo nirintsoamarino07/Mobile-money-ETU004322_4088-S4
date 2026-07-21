@@ -10,5 +10,5 @@ class BaremeFraisModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id_type_operation', 'montant_min', 'montant_max', 'frais_fixe', 'frais_pourcentage'];
+    protected $allowedFields    = ['id_type_operation', 'montant_min', 'montant_max', 'frais_fixe', 'frais_pourcentage' ];
 }

@@ -223,4 +223,6 @@ Controller
 Model
     getHistoriqueOperateur()
 View
-    historique_operateur.php
+    historique_operateur.php 
+
+    pqgede pourcentqge chacun a son pourcentage pt d4esparne base koto ex pr 5  trnafert le 5 transact dans leparge et reste dans le sold 

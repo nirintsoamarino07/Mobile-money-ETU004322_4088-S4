@@ -21,7 +21,8 @@
 
     <form action="<?= site_url('login') ?>" method="post">
         <?= csrf_field() ?>
-        <label for="telephone">Numéro de téléphone</label>
+        <label for="telephone">Numéro de téléphone</label> 
+        <label for="">Epargne</label> 
         <input type="text" id="telephone" name="telephone" required placeholder="Ex : 0321234567" autocomplete="tel">
         <button type="submit">Se connecter / Créer un compte</button>
     </form>
